@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: Text('30 Days Flutter'),),
       body: Center(
         child: Text('Welcome to $days days of flutter by $name')),
+        drawer: Drawer(),
     );
   }
 }
