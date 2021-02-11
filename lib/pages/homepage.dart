@@ -9,10 +9,11 @@ class HomePage extends StatelessWidget {
     final int days = 30;
     final String name = 'codepur';
     return Scaffold(
-      appBar: AppBar(title: Text('30 Days Flutter'),),
-      body: Center(
-        child: Text('Welcome to $days days of flutter by $name')),
-        drawer: MyDrawer(),
+      appBar: AppBar(
+        title: Text('Catalog App'),
+      ),
+      body: Center(child: Text('Welcome to $days days of flutter by $name')),
+      drawer: MyDrawer(),
     );
   }
 }
