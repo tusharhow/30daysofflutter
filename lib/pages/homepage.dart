@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_30days/widgets/drawer.dart';
+
+//*Day 11 we learned buildcontext, constraints
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -8,10 +11,11 @@ class HomePage extends StatelessWidget {
     final int days = 30;
     final String name = 'codepur';
     return Scaffold(
-      appBar: AppBar(title: Text('30 Days Flutter'),),
-      body: Center(
-        child: Text('Welcome to $days days of flutter by $name')),
-        drawer: Drawer(),
+      appBar: AppBar(
+        title: Text('Catalog App'),
+      ),
+      body: Center(child: Text('Welcome to $days days of flutter by $name')),
+      drawer: MyDrawer(),
     );
   }
 }

@@ -1,0 +1,27 @@
+{
+
+    "products": [
+
+        {
+            "id": "1",
+            "name": "iPhone 12 Pro",
+            "desc": "Appple iPhone 12 Generation",
+            "color": "#33505a",
+            "price": 999,
+            "image": ""
+        }
+
+
+
+
+    ]
+
+
+
+
+
+
+
+
+
+}
