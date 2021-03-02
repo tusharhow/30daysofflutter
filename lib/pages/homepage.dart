@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_30days/models/catalog.dart';
 import 'package:flutter_30days/pages/home_detail_page.dart';
-import 'package:flutter_30days/pages/login_page.dart';
 import 'package:flutter_30days/utils/routes.dart';
 import 'package:flutter_30days/widgets/themes.dart';
 import 'dart:convert';
@@ -36,7 +35,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamolor,
+      backgroundColor: Theme.of(context).canvasColor,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).buttonColor,
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.cartRoute);
+        },
+        child: Icon(CupertinoIcons.cart,color: Colors.white,),
+      ),
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
@@ -52,13 +58,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: MyTheme.darkBlueish,
-        onPressed: () {
-          Navigator.pushNamed(context, MyRoutes.cartRoute);
-        },
-        child: Icon(CupertinoIcons.cart),
-      ),
+
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
@@ -70,8 +70,8 @@ class CatalogHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "Gadgets App".text.xl5.bold.color(MyTheme.darkBlueish).make(),
-        "Trending products".text.xl2.make(),
+        "Gadgets App".text.xl5.bold.color(context.accentColor).make(),
+        "Trending products".text.xl2.color(context.accentColor).make(),
       ],
     );
   }
@@ -88,9 +88,11 @@ class CatalogList extends StatelessWidget {
         return InkWell(
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HomeDetailPage(catalog: catalog)));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeDetailPage(catalog: catalog),
+                ),
+              );
             },
             child: CatalogItem(catalog: catalog));
       },
@@ -121,8 +123,8 @@ class CatalogItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              catalog.name.text.lg.color(MyTheme.darkBlueish).bold.make(),
-              catalog.desc.text.textStyle(context.captionStyle).make(),
+              catalog.name.text.lg.color(Theme.of(context).accentColor).bold.make(),
+              catalog.desc.text.color(Theme.of(context).accentColor).textStyle(context.captionStyle).make(),
               10.heightBox,
               ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
@@ -133,7 +135,7 @@ class CatalogItem extends StatelessWidget {
                     onPressed: () {},
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
-                          MyTheme.darkBlueish,
+                          Theme.of(context).buttonColor,
                         ),
                         shape: MaterialStateProperty.all(
                           StadiumBorder(),
@@ -146,7 +148,7 @@ class CatalogItem extends StatelessWidget {
           ))
         ],
       ),
-    ).white.rounded.square(150).make().py16();
+    ).color(Colors.black).rounded.square(150).make().py16();
   }
 }
 
@@ -158,6 +160,13 @@ class CatalogImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(
       image,
-    ).box.rounded.p8.color(MyTheme.creamolor).make().p16().w40(context);
+    )
+        .box
+        .color(Theme.of(context).canvasColor)
+        .rounded
+        .p8
+        .make()
+        .p16()
+        .w40(context);
   }
 }

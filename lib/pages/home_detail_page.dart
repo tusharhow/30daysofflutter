@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -16,11 +14,10 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
+      appBar: AppBar(backgroundColor: Colors.transparent),
+      backgroundColor: Theme.of(context).canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: EdgeInsets.zero,
@@ -40,7 +37,6 @@ class HomeDetailPage extends StatelessWidget {
           ],
         ).p32(),
       ),
-      backgroundColor: MyTheme.creamolor,
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -55,12 +51,12 @@ class HomeDetailPage extends StatelessWidget {
               arcType: VxArcType.CONVEY,
               edge: VxEdge.TOP,
               child: Container(
-                color: Colors.white,
+                color: Theme.of(context).cardColor,
                 width: context.screenWidth,
                 child: Column(
                   children: [
                     catalog.name.text.xl4
-                        .color(MyTheme.darkBlueish)
+                        .color(Theme.of(context).accentColor)
                         .bold
                         .make(),
                     catalog.desc.text.textStyle(context.captionStyle).xl.make(),
@@ -68,7 +64,8 @@ class HomeDetailPage extends StatelessWidget {
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has. simply dummy text of the printing and typesetting industry. Lorem Ipsum has."
                         .text
                         .textStyle(context.captionStyle)
-                        .make().p20(),
+                        .make()
+                        .p20(),
                   ],
                 ).py64(),
               ),
