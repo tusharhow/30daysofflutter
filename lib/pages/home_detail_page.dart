@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -15,7 +17,7 @@ class HomeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: MyTheme.creamolor,
+        backgroundColor: Colors.transparent,
       ),
       bottomNavigationBar: Container(
         color: Colors.white,
@@ -33,8 +35,8 @@ class HomeDetailPage extends StatelessWidget {
                   shape: MaterialStateProperty.all(
                     StadiumBorder(),
                   )),
-              child: "Buy".text.make(),
-            ).wh(100, 50),
+              child: "Add to cart".text.make(),
+            ).wh(120, 50),
           ],
         ).p32(),
       ),
@@ -55,11 +57,20 @@ class HomeDetailPage extends StatelessWidget {
               child: Container(
                 color: Colors.white,
                 width: context.screenWidth,
-                child: Column(children: [
-                  catalog.name.text.xl4.color(MyTheme.darkBlueish).bold.make(),
-                  catalog.desc.text.textStyle(context.captionStyle).xl.make(),
-                  10.heightBox,
-                ]).py64(),
+                child: Column(
+                  children: [
+                    catalog.name.text.xl4
+                        .color(MyTheme.darkBlueish)
+                        .bold
+                        .make(),
+                    catalog.desc.text.textStyle(context.captionStyle).xl.make(),
+                    10.heightBox,
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has. simply dummy text of the printing and typesetting industry. Lorem Ipsum has."
+                        .text
+                        .textStyle(context.captionStyle)
+                        .make().p20(),
+                  ],
+                ).py64(),
               ),
             ))
           ],

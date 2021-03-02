@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_30days/models/catalog.dart';
 import 'package:flutter_30days/pages/home_detail_page.dart';
+import 'package:flutter_30days/pages/login_page.dart';
+import 'package:flutter_30days/utils/routes.dart';
 import 'package:flutter_30days/widgets/themes.dart';
 import 'dart:convert';
 import 'package:velocity_x/velocity_x.dart';
@@ -12,10 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final int days = 30;
-
-  final String name = "Codepur";
-
   @override
   void initState() {
     super.initState();
@@ -37,22 +36,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyTheme.creamolor,
-        body: SafeArea(
-          child: Container(
-            padding: Vx.m32,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CatalogHeader(),
-                if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-                  CatalogList().py16().expand()
-                else
-                  CircularProgressIndicator().centered().expand(),
-              ],
-            ),
+      backgroundColor: MyTheme.creamolor,
+      body: SafeArea(
+        child: Container(
+          padding: Vx.m32,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CatalogHeader(),
+              if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+                CatalogList().py16().expand()
+              else
+                CircularProgressIndicator().centered().expand(),
+            ],
           ),
-        ));
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: MyTheme.darkBlueish,
+        onPressed: () {
+          Navigator.pushNamed(context, MyRoutes.cartRoute);
+        },
+        child: Icon(CupertinoIcons.cart),
+      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
   }
 }
 
@@ -62,7 +70,7 @@ class CatalogHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "Catalog App".text.xl5.bold.color(MyTheme.darkBlueish).make(),
+        "Gadgets App".text.xl5.bold.color(MyTheme.darkBlueish).make(),
         "Trending products".text.xl2.make(),
       ],
     );
@@ -130,7 +138,7 @@ class CatalogItem extends StatelessWidget {
                         shape: MaterialStateProperty.all(
                           StadiumBorder(),
                         )),
-                    child: "Buy".text.make(),
+                    child: "Add to cart".text.make(),
                   )
                 ],
               ).pOnly(right: 8.0)
