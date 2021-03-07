@@ -34,7 +34,13 @@ class _CardTotal extends StatelessWidget {
         children: [
           "\$9999".text.xl4.color(MyTheme.darkBlueish).make(),
           30.widthBox,
-          ElevatedButton(onPressed: () {}, child: Text('Buy')).w32(context)
+          ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: "Buying not supported yet".text.make()));
+                  },
+                  child: Text('Buy'))
+              .w32(context)
         ],
       ),
     );
@@ -53,11 +59,10 @@ class __CartListState extends State<_CartList> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: 5,
-      itemBuilder: (context, index) =>ListTile(
+      itemBuilder: (context, index) => ListTile(
         leading: Icon(Icons.done),
-        trailing: IconButton(icon: Icon(Icons.remove_circle_outline), onPressed: () {
-
-        }),
+        trailing: IconButton(
+            icon: Icon(Icons.remove_circle_outline), onPressed: () {}),
         title: "Item 1".text.make(),
       ),
     );
